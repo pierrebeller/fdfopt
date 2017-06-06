@@ -18,15 +18,15 @@ LIBLINK = -L ./libft -lft
 all: $(NAME)
 
 $(NAME) :
-	make -C ../libft
-	gcc $(CFLAGS) fdf.h main.c mlx.c calculs.c draw.c hook.c parsing.c ../gnl/get_next_line.c ../gnl/get_next_line.h ../libft/libft.a ../../minilibx_macos/libmlx.a -framework AppKit -framework OpenGl
+	make -C ../../../Lib_ft
+	gcc $(CFLAGS) fdf.h main.c mlx.c calculs.c draw.c hook.c parsing.c ../../gnl/get_next_line.c ../../gnl/get_next_line.h ../../../Lib_ft/libft.a ../../../minilibx_macos/libmlx.a -framework AppKit -framework OpenGl
 
 clean:
-	make -C ../libft clean
+	make -C ../../../Lib_ft clean
 	rm -rf $(OBJ)
 
 fclean: clean
-	make -C ../libft fclean
+	make -C ../../../Lib_ft fclean
 	rm -f $(NAME)
 
 re: fclean all

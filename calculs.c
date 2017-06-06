@@ -22,10 +22,7 @@ void	calcul_coords(t_window *window)
 	{
 		i = 0;
 		while (i < window->map_w)
-		{
-			calculate(window, window->map[j][i]);
-			i++;
-		}
+			calculate(window, window->map[j][i++]);
 		j++;
 	}
 	draw_map(window);

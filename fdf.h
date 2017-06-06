@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../../minilibx_macos/mlx.h"
-#include "../gnl/get_next_line.h"
+#include "../../../Lib_ft/libft.h"
+#include "../../../minilibx_macos/mlx.h"
+#include "../../gnl/get_next_line.h"
 #include <stdio.h>
 
 #define ISO_CONST1 3
@@ -62,6 +62,7 @@ typedef	struct		s_window
 	t_points		***map;
 	int				map_h;
 	int				map_w;
+	int				max_z;
 }					t_window;
 
 int			put_points(t_points ***tab);
@@ -82,8 +83,8 @@ int		key_hook(int keycode, t_window *window);
 
 void	ft_do_fdf(t_window *win);
 
-t_points	*ft_newpoint(char *data, int y, int index);
-t_points	**ft_new_line(char *line, int y);
+t_points	*ft_newpoint(char *data, int y, int index, t_window *win);
+t_points	**ft_new_line(char *line, int y, t_window *win);
 t_points	***ft_create_map(t_list *map, t_window *win);
 t_points	***ft_fdf(t_window *win);
 

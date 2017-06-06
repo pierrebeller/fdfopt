@@ -23,7 +23,7 @@ void	draw_map(t_window *window)
 		x = 0;
 		while (window->map[y + 1][x + 1])
 		{
-			ft_bresenham(window->map, x, y, window->win);
+			ft_bresenham(window->map, x, y, window);
 			x++;
 		}
 		y++;
@@ -32,7 +32,7 @@ void	draw_map(t_window *window)
 	while (window->map[y][x])
 	{
 		if (window->map[y][x + 1] != NULL)
-			ft_seg(window->map[y][x], window->map[y][x + 1], window->win);
+			ft_seg(window->map[y][x], window->map[y][x + 1], window);
 		x++;
 	}
 }
