@@ -15,10 +15,10 @@
 void	ft_do_fdf(t_window *window)
 {
 	window->mlx = mlx_init();
-	window->win = mlx_new_window(window->mlx, LENGTH, WIDTH, "fdf");
-	//win->pad = 15;
+	window->win = mlx_new_window(window->mlx, WIN_W, WIN_H, "fdf");
+	window->pad = 4;
 	window->opt = ISO;
-	//win->pad_h = 5;
+	window->pad_h = 1;
 	window->move_lr = 1;
 	window->move_ud = 1;
 	//win->draw_type = PUT;
@@ -26,8 +26,8 @@ void	ft_do_fdf(t_window *window)
 	window->rot = BET_Z;
 	window->legend = ON;
 	window->map_w = 0;
-	//win->img = mlx_new_image(win->init, WIN_W, WIN_H);
-	//win->data = mlx_get_data_addr(win->img, &(win->color), &(win->size), &(win->endian));
+	window->img = mlx_new_image(window->mlx, WIN_W, WIN_H);
+	window->data = mlx_get_data_addr(window->img, &(window->color), &(window->size), &(window->endian));
 	window->map = ft_fdf(window);
 	calcul_coords(window);
 	mlx_key_hook(window->win, key_hook, window);

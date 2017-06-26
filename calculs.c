@@ -32,13 +32,13 @@ void	calculate(t_window *window, t_points *point)
 {
 	if (window->opt == ISO)
 	{
-		point->new_x = (point->x * ISO_CONST1) - (ISO_CONST2 * point->y) + LENGTH / 2;
-		point->new_y = (ISO_CONST1 * point->x / 2) + (ISO_CONST2 * point->y) - (point->z) + WIDTH / 4;
+		point->new_x = window->pad * ((point->x) - (point->y)) + WIN_W / 2;
+		point->new_y = window->pad * ((point->x) + (point->y)) / 2 - window->pad_h * (point->z) + WIN_H / 4;
 	}
 	else if (window->opt == PARA)
 	{
-		point->new_x = point->x - (point->z) / 2 + LENGTH/2;
-		point->new_y = point->y + point->z + WIDTH / 3;
+		point->new_x = point->x - (point->z) / 2 + WIN_W/2;
+		point->new_y = point->y + point->z + WIN_H / 3;
 	}
 }
 
