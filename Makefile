@@ -2,31 +2,60 @@
 
 .SUFFIXES:
 
-NAME = fdf
+NAME = FdF
 
-SRC 	= fdf.c \
-		testmlx.c \
+SRC 	= 		main.c \
+				mlx.c \
+				calculs.c \
+				draw.c \
+				hook.c \
+				parsing.c \
+				check.c
 
-OBJ = *.o
+OBJ = $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
 
-LIBFT = ./libft/libft.a
-LIBINC = -I ./libft
-LIBLINK = -L ./libft -lft
+MLX = ./minilibx_macos/
+MLX_LIB = $(addprefix $(MLX),mlx.a))
+MLX_INC = -I ./minilibx_macos
+MLX_LNK = -L ./minilibx_macos -l mlx -framework OpenGl -framework AppKit
 
-all: $(NAME)
+FT = ./libft/
+FT_LIB = $(addprefix $(FT),libft.a))
+FT_INC = -I ./libft
+FT_LNK = -L ./libft -l ft
 
-$(NAME) :
-	make -C ../../../Lib_ft
-	gcc -g $(CFLAGS) fdf.h main.c mlx.c calculs.c draw.c hook.c parsing.c check.c ../../gnl/get_next_line.c ../../gnl/get_next_line.h ../../../Lib_ft/libft.a ../../../minilibx_macos/libmlx.a -framework AppKit -framework OpenGl
+SRCDIR = ./src/
+INCDIR = ./includes/
+OBJDIR = ./obj/
 
+all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
+
+obj: 
+		mkdir -p $(OBJDIR)
+
+$(OBJDIR)%.o:$(SRCDIR)%.c
+		$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+
+$(FT_LIB):
+		make -C $(FT)
+
+$(MLX_LIB):
+		make -C $(MLX)
+
+$(NAME) : $(OBJ)
+	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
+	
 clean:
-	make -C ../../../Lib_ft clean
-	rm -rf $(OBJ)
+	rm -rf $(OBJDIR)
+	make -C $(FT) clean
+	make -C $(MLX) clean
 
 fclean: clean
-	make -C ../../../Lib_ft fclean
-	rm -f $(NAME)
+	rm -rf $(NAME)
+	make -C $(FT) fclean
+	
 
 re: fclean all
