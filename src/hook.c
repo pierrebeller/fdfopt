@@ -23,7 +23,7 @@ void	redraw(t_window *window)
 {
 	ft_bzero(window->data, WIN_H * WIN_W * 4);
 	calcul_coords(window);
-}	
+}
 
 void	zoom_inc(t_window *window)
 {
@@ -34,30 +34,6 @@ void	zoom_inc(t_window *window)
 void	zoom_dec(t_window *window)
 {
 	window->pad -= 1;
-	redraw(window);
-}
-
-void	move_l(t_window *window)
-{
-	window->move_lr -= 5;
-	redraw(window);
-}
-
-void	move_r(t_window *window)
-{
-	window->move_lr += 5;
-	redraw(window);
-}
-
-void	move_u(t_window *window)
-{
-	window->move_ud -= 5;
-	redraw(window);
-}
-
-void	move_d(t_window *window)
-{
-	window->move_ud += 5;
 	redraw(window);
 }
 

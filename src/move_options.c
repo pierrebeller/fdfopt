@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   move_options.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbeller <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/06 09:01:06 by pbeller           #+#    #+#             */
-/*   Updated: 2017/03/06 09:01:08 by pbeller          ###   ########.fr       */
+/*   Created: 2017/06/28 15:22:37 by pbeller           #+#    #+#             */
+/*   Updated: 2017/06/28 15:22:41 by pbeller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int argc, char **argv)
+void	move_l(t_window *window)
 {
-	t_window	window;
+	window->move_lr -= 5;
+	redraw(window);
+}
 
-	window.path = argv[1];
-	if (argc == 2)
-		ft_do_fdf(&window);
-	else if (argc < 2)
-		ft_putstr("Insert map !");
-	else
-		ft_putstr("Too many arguments");
-	return (0);
+void	move_r(t_window *window)
+{
+	window->move_lr += 5;
+	redraw(window);
+}
+
+void	move_u(t_window *window)
+{
+	window->move_ud -= 5;
+	redraw(window);
+}
+
+void	move_d(t_window *window)
+{
+	window->move_ud += 5;
+	redraw(window);
 }

@@ -14,7 +14,8 @@
 #include "libft.h"
 
 t_points	*ft_newpoint(char *data, int y, int index, t_window *win)
-{	t_points *point;
+{
+	t_points *point;
 
 	point = malloc(sizeof(t_points));
 	point->x = index;
@@ -45,7 +46,6 @@ t_points	**ft_new_line(char *line, int y, t_window *win)
 	return (bigline);
 }
 
-
 t_points	***ft_create_map(t_list *map, t_window *win)
 {
 	t_points	***tab;
@@ -72,7 +72,7 @@ t_points	***ft_fdf(t_window *win)
 	t_points	***tab;
 
 	map = NULL;
-	if(!(fd = open(win->path, O_RDONLY)))
+	if (!(fd = open(win->path, O_RDONLY)))
 		exit(0);
 	while (get_next_line(fd, &line))
 	{

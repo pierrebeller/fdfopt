@@ -6,7 +6,7 @@
 /*   By: pbeller <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 09:01:06 by pbeller           #+#    #+#             */
-/*   Updated: 2017/03/06 09:01:08 by pbeller          ###   ########.fr       */
+/*   Updated: 2017/06/28 14:28:02 by pbeller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_points
 	int				z;
 	int				new_x;
 	int				new_y;
+	int				color;
 
 }					t_points;
 
@@ -52,6 +53,7 @@ typedef struct		s_bresenham
 	int				y;
 	int				xinc;
 	int				yinc;
+	int				delta_e;
 
 }					t_bresenham;
 
@@ -85,13 +87,14 @@ int					put_points(t_points ***tab);
 
 void				calcul_coords(t_window *win);
 void				calculate(t_window *win, t_points *point);
-void				ft_bresenham(t_points ***tab, int x, int y, t_window *window);
+t_bresenham			*bres_build(t_points *p1, t_points *p2, int max_z);
+int					ft_paint(int p1, int p2, int max_z);
 
 void				draw_map(t_window *win);
-void				ft_slow_increase(t_bresenham *bres, t_window *window);
-void				ft_high_increase(t_bresenham *bres, t_window *window);
-void				ft_draw_seg(t_bresenham *bres, t_window *window);
-void				ft_seg(t_points *tab, t_points *tabnext, t_window *window);
+void				redraw(t_window *window);
+void				draw_line(t_window *win, t_points *p1, t_points *p2);
+void				ft_slow_increase(t_bresenham *bres, t_window *window, t_points *p1);
+void				ft_high_increase(t_bresenham *bres, t_window *window, t_points *p1);
 
 int					expose_hook(t_window *win);
 int					mouse_hook(int button, t_window *window);
@@ -106,4 +109,9 @@ t_points			***ft_fdf(t_window *win);
 
 int					check_x(int x);
 int					check_y(int y);
+
+void	move_u(t_window *window);
+void	move_d(t_window *window);
+void	move_l(t_window *window);
+void	move_r(t_window *window);
 #endif
